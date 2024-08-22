@@ -1,5 +1,5 @@
 # Telegram Bot
-This is Telegram bot written in C++, it will send message in telegram when there is new release out from your favorite repo in github.    
+This is Telegram bot written in C++, it will send message in telegram when there is new commit pushed from your favorite repo in github.    
 This program is inspired from [git_release_tracker](https://github.com/dracarys18/git_release_tracker) written in rust by [dracarys18](https://github.com/dracarys18)
 
 # Dependency 
@@ -14,11 +14,11 @@ make -j4
 sudo make install
 ```
 
-# Install from source
+# Install from source [tgbot-cpp/src]
 Clone this repo and compile.
 ```sh
-git clone https://github.com/ms-jagadeeshan/telegram_bot-github-release-tracker.git
-cd telegram_bot-github-release-tracker
+git clone https://github.com/s-mtGhub/TelegramBot-gitNewCommitTracker.git
+cd TelegramBot-gitNewCommitTracker
 make all
 ```
 Rename config-sample.json to config.json and fill the chat id, token,repos to be monitored    
@@ -29,14 +29,44 @@ Rename config-sample.json to config.json and fill the chat id, token,repos to be
     "chat_id": "",     // Enter the chat id to be notified
     "token": "",       // Enter your bot token(stored locally,so don't have to worry)
     "repos": [         // add the repos you want to track
-        "ms-jagadeeshan/telegram_bot-github-release-tracker",
+        "ms-jagadeeshan/TelegramBot-gitNewCommitTracker",
         "torvalds/linux"
     ],
     "github_personal_token":""  // Format:  "<github_username>:token"
 }
 ```
 Go to telegram and https://t.me/botfather to get bot token from telegram.    
-And https://t.me/rawdatabot to get you chat id.    
+get you chat id : 
+1. Search and open our new Telegram bot
+2. Click Start or send a message
+3. Open this URL in a browser https://api.telegram.org/bot{our_bot_token}/getUpdates
+4. See we need to prefix our token with a word bot
+Eg: https://api.telegram.org/bot63xxxxxx71:AAFoxxxxn0hwA-2TVSxxxNf4c/getUpdates
+5. We will see a json like so
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 83xxxxx35,
+      "message": {
+        "message_id": 2643,
+        "from": {...},
+        "chat": {
+          "id": 21xxxxx38,
+          "first_name": "...",
+          "last_name": "...",
+          "username": "@username",
+          "type": "private"
+        },
+        "date": 1703062972,
+        "text": "/start"
+      }
+    }
+  ]
+}
+6. Check the value of result.0.message.chat.id, and here is our Chat ID: 21xxxxx38
+7. Let's try to send a message: https://api.telegram.org/bot63xxxxxx71:AAFoxxxxn0hwA-2TVSxxxNf4c/sendMessage?chat_id=21xxxxx38&text=test123
+When we set the bot token and chat id correctly, the message test123 should be arrived on our Telegram bot chat.    
 After filling chat id and token just run this to start the bot
 ```sh
 make run
