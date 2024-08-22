@@ -20,7 +20,7 @@ make -j4
 sudo make install
 ```
 
-## Installation
+## Installation [from source folder 'tgbot-cpp/src']
 
 1. **Clone the Repository**  
    Clone this repository and compile the source code:
