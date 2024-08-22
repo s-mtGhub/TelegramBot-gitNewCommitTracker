@@ -1,0 +1,10 @@
+{
+    "chat_id": "",
+    "token": "",
+    "repos": [
+        "s-mtGhub/TelegramBot-newReleaseTracker",
+        "torvalds/linux"
+
+    ],
+    "github_personal_token": "<github-user name>:token"
+}

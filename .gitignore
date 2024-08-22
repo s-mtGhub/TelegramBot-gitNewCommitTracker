@@ -1,0 +1,9 @@
+bin/*
+config.json
+Makefile.bak
+.tmp.cpp
+data/*
+.vscode/*
+tmp.cpp
+tmp
+html/
